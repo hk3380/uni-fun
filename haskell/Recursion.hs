@@ -27,7 +27,7 @@ replicate' n x
 take' :: (Ord i, Num i) => i -> [a] -> [a]
 take' _ [] = []
 take' n (x:xs)
-            | n == 0     = []
+            | n == 0    = []
             | n < 0     = error "positive numbers pls"
             | otherwise =  [x] ++ take' (n-1) xs
 
@@ -48,5 +48,5 @@ quicksort :: (Ord a) => [a] -> [a]
 quicksort [] = []
 quicksort (x:xs) = 
           let smallerSorted = [a | a <- xs, a <= x]
-              biggerSorted = [a | a <- xs, a > x]
+              biggerSorted  = [a | a <- xs, a > x]
           in smallerSorted ++ [x] ++ biggerSorted
