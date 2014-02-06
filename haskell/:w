@@ -1,0 +1,8 @@
+-- User defined maximum
+maximum' :: (Ord a) => [a] -> a
+maximum' [] = error "list is empty"
+maximum' [x] = x
+maximum' (x:xs) 
+          | x > MaxTail = x
+          | otherwise  = MaxTail
+          where MaxTail = maximum' xs
