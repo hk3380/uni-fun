@@ -28,3 +28,17 @@ oddSquares n = sum (filter odd (map (^2) [1..n]))
 
 oddSquares2 :: (Integral a) => a -> a
 oddSquares2 n = sum [x^2 | x <- [1..n], odd (x^2)]
+
+-- Using fold for implementing sum
+sum' :: (Num a) => [a] -> a
+sum' xs = foldl(\acc x -> acc + x) 0 xs -- haskell is so qt
+sum2' = foldl (+) 0                     -- this is nuts
+
+-- Using fold for implementing elem
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' x xs = foldl (\acc y -> if x == y then True else acc) False xs
+
+
+-- Using foldr1 to define max
+max' :: (Ord a) => [a] -> a
+max' = foldr1(\x acc -> if x > acc then x else acc)
