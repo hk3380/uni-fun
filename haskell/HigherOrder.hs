@@ -42,3 +42,7 @@ elem' x xs = foldl (\acc y -> if x == y then True else acc) False xs
 -- Using foldr1 to define max
 max' :: (Ord a) => [a] -> a
 max' = foldr1(\x acc -> if x > acc then x else acc)
+
+-- Using foldr to define lookup
+lookup' :: (Eq k) => k -> [(k,v)] -> Maybe v
+lookup' key = foldr (\(k,v) acc -> if key == k then Just v else acc) Nothing
