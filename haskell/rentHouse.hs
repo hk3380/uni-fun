@@ -9,6 +9,7 @@ type Number = String
 -- Type synonym for int -> pair mapping
 type HouseMap = Map.Map Int (HouseState, Number)
 
+-- Function that checks whether house is free 
 houseSearch :: Int -> HouseMap -> Either String Number
 houseSearch houseNo map = 
       case Map.lookup houseNo map of
@@ -18,6 +19,7 @@ houseSearch houseNo map =
                                 else Left $ "House " ++ show number ++ " is taken, pal."
 
 
+-- Some example map to test
 houses :: HouseMap
 houses = Map.fromList
     [(100, (Taken,"Z1"))
