@@ -4,8 +4,8 @@
 
 -- types
 type Assoc a = [(String, a)] -- for later
-type V = String
-type N = Int
+type V       = String
+type N       = Int
 
 -- Expression datatype
 data E = Get N
@@ -56,7 +56,7 @@ test = [("a", 1),("b", 2),("c", 3)]
 -- Get keys
 -- type signatures are for nerds
 names [] = []
-names (x:xs) = fst x : names xs
+names (x:xs) = fst x : names xs -- map works too
 
 -- Does value exist?
 inAssoc _ [] = False
@@ -85,16 +85,18 @@ data Expression = Var V
                 | Val N 
                 | Math Expression Operator Expression 
 
-evalOP Addition = (+)
-evalOP Deduct = (-)
-evalOP Multiply = (*)
--- evalOP Divide = (+)
+evalOP :: Operator -> (Int -> Int -> Int)
+evalOP Addition  = (+)
+evalOP Deduct    = (-)
+evalOP Multiply  = (*)
+-- i don't have the strength to change int->rational where needed
+-- evalOP Divide = (/)
 
 
-eval2 :: Assoc Int -> Expression -> Int
-eval2 vars (Var v) = fetch v vars
-eval2 vars (Val n) = n
-eval2 vars (Math a op b) =  (evalOP op) (eval2 vars a) (eval2 vars b)
+evaluate :: Assoc Int -> Expression -> Int
+evaluate vars (Var v) = fetch v vars
+evaluate vars (Val n) = n
+evaluate vars (Math a op b) =  (evalOP op) (evaluate vars a) (evaluate vars b)
 
 
 main = do print "only love for my girls"
