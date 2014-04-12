@@ -8,7 +8,7 @@ sup() -> io:format("Hiya, world!~n").
 % Pattern matching
 ez(yes, Name) -> io:format ("good for you ~s~n", [Name]);
 ez(no, Name)  -> io:format ("go home ~s~n", [Name]);
-ez(_, _)   -> io:format ("what ~n").
+ez(_, _)      -> io:format ("what ~n").
 
 % Guards
 go_home(H) when H >= 0000 andalso H =< 1600 -> true;
